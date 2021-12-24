@@ -61,6 +61,11 @@ class Ui_MainWindow(object):
         self.delta_Y_LCD.setSegmentStyle(QtWidgets.QLCDNumber.Flat)
         self.delta_Y_LCD.setObjectName("delta_Y_LCD")
 
+        self.clearButton = QtWidgets.QPushButton(self.centralwidget)
+        self.clearButton.setGeometry(QtCore.QRect(25, 350, 70, 30))
+        self.clearButton.setObjectName("clearButton")
+        self.clearButton.setText("ОЧИСТИТЬ")
+
         self.delta_X_button = QtWidgets.QPushButton(self.centralwidget)
         self.delta_X_button.setGeometry(QtCore.QRect(365, 350, 60, 30))
         self.delta_X_button.setObjectName("delta_X_button")
@@ -72,6 +77,14 @@ class Ui_MainWindow(object):
         self.delta_Y_button.setObjectName("delta_Y_button")
         self.delta_Y_button.setStyleSheet("background-color: red")
         self.delta_Y_button.setText("КУРСОР Y")
+
+        self.help_button = QtWidgets.QPushButton(self.centralwidget)
+        self.help_button.setGeometry(QtCore.QRect(630, 500, 120, 60))
+        self.help_button.setObjectName("help_button")
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.help_button.setFont(font)
+        self.help_button.setText("О ПРОГРАММЕ")
 
         self.setpoint_line = QtWidgets.QLineEdit(self.centralwidget)
         self.setpoint_line.setGeometry(QtCore.QRect(680, 50, 50, 25))
@@ -99,17 +112,17 @@ class Ui_MainWindow(object):
         self.start_stop_button.setGeometry(QtCore.QRect(465, 350, 60, 30))
         self.start_stop_button.setObjectName("start_stop_button")
         self.meas_val = QtWidgets.QLCDNumber(self.centralwidget)
-        self.meas_val.setGeometry(QtCore.QRect(180, 400, 70, 25))
+        self.meas_val.setGeometry(QtCore.QRect(180, 400, 125, 25))
         self.meas_val.setFrameShape(QtWidgets.QFrame.Box)
         self.meas_val.setFrameShadow(QtWidgets.QFrame.Plain)
-        self.meas_val.setDigitCount(6)
+        self.meas_val.setDigitCount(7)
         self.meas_val.setSegmentStyle(QtWidgets.QLCDNumber.Flat)
         self.meas_val.setObjectName("meas_val")
         self.err_val = QtWidgets.QLCDNumber(self.centralwidget)
-        self.err_val.setGeometry(QtCore.QRect(180, 450, 70, 25))
+        self.err_val.setGeometry(QtCore.QRect(180, 450, 125, 25))
         self.err_val.setFrameShape(QtWidgets.QFrame.Box)
         self.err_val.setFrameShadow(QtWidgets.QFrame.Plain)
-        self.err_val.setDigitCount(6)
+        self.err_val.setDigitCount(7)
         self.err_val.setSegmentStyle(QtWidgets.QLCDNumber.Flat)
         self.err_val.setObjectName("err_val")
         self.label_SP = QtWidgets.QLabel(self.centralwidget)
@@ -188,6 +201,14 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.label_P.setToolTip("<b>Пропорциональная составляющая</b> вырабатывает выходной сигнал, \
+                                <br>противодействующий отклонению регулируемой величины от заданного значения, наблюдаемому в данный момент времени. Он тем больше, чем больше это отклонение.")
+        self.label_D.setToolTip("<b>Дифференцирующая составляющая</b> пропорциональна темпу изменения отклонения регулируемой величины \
+                                <br>и предназначена для противодействия отклонениям от целевого значения, которые прогнозируются в будущем.")
+        self.label_I.setToolTip("<b>Интегрирующая составляющая</b> пропорциональна интегралу по времени от отклонения регулируемой величины. \
+                                <br>Её используют для устранения статической ошибки. \
+                                <br>Она позволяет регулятору со временем учесть статическую ошибку.")
+        self.label_SP.setToolTip("<b>Заданное значение (уставка)</b>")
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
